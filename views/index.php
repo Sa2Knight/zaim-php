@@ -2,7 +2,10 @@
 	require_once '../class/zaim.php';
 	require_once '../class/util.php';
 	$zaim = Util::get_oauth_consumer();
-	echo $zaim->user_name();
+	$total_pay = $zaim->total_payments();
+	$total_income = $zaim->total_incomes();
+	$profit = $total_income - $total_pay;
+	$total_input_count = $zaim->total_input_count();
 ?>
 
 <html>
@@ -14,19 +17,19 @@
 	<table border="1">
 		<tr>
 			<td>入力回数</td>
-			<td>0</td>
+			<td><?php echo $total_input_count ?></td>
 		</tr>
 		<tr>
 			<td>総収入</td>
-			<td>0</td>
+			<td><?php echo $total_income;  ?></td>
 		</tr>
 		<tr>
 			<td>総支出</td>
-			<td>0</td>
+			<td><?php echo $total_pay; ?></td>
 		</tr>
 		<tr>
 			<td>収益</td>
-			<td>0</td>
+			<td><?php echo $profit; ?></td>
 		</tr>
 	</table>
 </body>
