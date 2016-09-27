@@ -32,7 +32,7 @@ class Util {
 		$month = intval($m[2]);
 		$day = intval($m[3]);
 
-		$datetime = date_create($date);
+		$datetime = date_create($year . '-' . $month . '-' . $cutoff);
 		$week_day = (int)$datetime->format('w');
 		if ($week_day == 0) $cutoff -= 2;
 		if ($week_day == 6) $cutoff -= 1;
