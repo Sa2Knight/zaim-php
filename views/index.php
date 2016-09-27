@@ -22,15 +22,15 @@
 		</tr>
 		<tr>
 			<td>総収入</td>
-			<td><?php echo $total_income;  ?></td>
+			<td><?php Util::echo_money($total_income);  ?></td>
 		</tr>
 		<tr>
 			<td>総支出</td>
-			<td><?php echo $total_pay; ?></td>
+			<td><?php Util::echo_money($total_pay); ?></td>
 		</tr>
 		<tr>
 			<td>収益</td>
-			<td><?php echo $profit; ?></td>
+			<td><?php Util::echo_money($profit); ?></td>
 		</tr>
 	</table>
 

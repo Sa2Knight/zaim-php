@@ -36,7 +36,7 @@ if ($target == 'category') {
 				<td class='center'><?php echo $v['rank']; ?></td>
 				<td class='center'><?php echo $v['key']; ?></td>
 				<td class='center'><?php echo $v['num']; ?></td>
-				<td class='right'><?php echo $v['amount']; ?></td>
+				<td class='right'><?php Util::echo_money($v['amount']); ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</table>
