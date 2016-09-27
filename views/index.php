@@ -32,5 +32,14 @@
 			<td><?php echo $profit; ?></td>
 		</tr>
 	</table>
+
+	<h1>集計情報</h1>
+	<p>ランキング</p>
+	<ul>
+		<li><a href="/ranking?target=category">カテゴリ</a></li>
+		<li><a href="/ranking?target=genre">ジャンル</a></li>
+		<li><a href="/ranking?target=place">支払先</a></li>
+	</ul>
+
 </body>
 </html>
