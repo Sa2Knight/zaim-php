@@ -74,38 +74,17 @@ class Zaim {
 
 	// カテゴリ別のランキングを生成
 	public function category_ranking() {
-		$ranking = $this->create_ranking('category_id');
-		$rank = 1;
-		foreach ($ranking as &$r) {
-			$r['rank'] = $rank;
-			$rank += 1;
-		}
-		unset($r);
-		return $ranking;
+		return $this->create_ranking('category_id');
 	}
 
 	// ジャンル別のランキングを生成
 	public function genre_ranking() {
-		$ranking = $this->create_ranking('genre_id');
-		$rank = 1;
-		foreach ($ranking as &$r) {
-			$r['rank'] = $rank;
-			$rank += 1;
-		}
-		unset($r);
-		return $ranking;
+		return $this->create_ranking('genre_id');
 	}
 
 	// 支払先別のランキングを生成
 	public function place_ranking() {
-		$ranking = $this->create_ranking('place');
-		$rank = 1;
-		foreach ($ranking as &$r) {
-			$r['rank'] = $rank;
-			$rank += 1;
-		}
-		unset($r);
-		return $ranking;
+		return $this->create_ranking('place');
 	}
 
 	// カテゴリIDをカテゴリ名に一括変換
@@ -118,6 +97,19 @@ class Zaim {
 
 	// 指定した条件でランキングを生成
 	private function create_ranking($key , $params = array()) {
+		$ranking = $this->aggregate_payments($key , $params);
+		uasort($ranking , function($a , $b) { return ($a['num'] <= $b['num']) ? 1 : -1; });
+		$rank = 1;
+		foreach ($ranking as &$r) {
+			$r['rank'] = $rank;
+			$rank += 1;
+		}
+		unset($r);
+		return $ranking;
+	}
+
+	// 支払情報内の、特定の要素を集計する
+	private function aggregate_payments($key , $params = array()) {
 		$params = array('mode' => 'payment');
 		$payments = $this->get_money($params);
 		$t_hash = array();
@@ -130,7 +122,6 @@ class Zaim {
 			$t_hash[$k]['amount'] += $pay['amount'];
 		}
 		unset($t_hash[""]); //未入力は削除
-		uasort($t_hash , function($a , $b) { return ($a['num'] <= $b['num']) ? 1 : -1; });
 		return $t_hash;
 	}
 

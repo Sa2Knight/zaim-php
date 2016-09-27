@@ -5,7 +5,11 @@ require_once '../class/util.php';
 $zaim = Util::get_oauth_consumer();
 $target = $_GET['target'];
 if ($target == 'category') {
+	$title = 'カテゴリー';
+	$ranking = $zaim->category_ranking();
 } elseif ($target == 'genre') {
+	$title = 'ジャンル';
+	$ranking = $zaim->genre_ranking();
 } elseif ($target == 'place') {
 	$title = '支払先';
 	$ranking = $zaim->place_ranking();
