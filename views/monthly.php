@@ -2,7 +2,17 @@
 require_once '../class/zaim.php';
 require_once '../class/util.php';
 $link = $_GET['link'];
+$params = array();
+if (isset($_GET['genre_id'])) {
+	$params['genre_id'] = $_GET['genre_id'];
+} elseif (isset($_GET['category_id'])) {
+	$params['category_id'] = $_GET['category_id'];
+}
+if (isset($_GET['comment'])) {
+	$params['comment'] = $_GET['comment'];
+}
 $zaim = Util::get_oauth_consumer();
+$monthly = $zaim->monthly_payments($params);
 ?>
 
 <html>

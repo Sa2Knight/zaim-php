@@ -72,6 +72,20 @@ class Zaim {
 		return count($this->get_money());
 	}
 
+	// 月ごとの支出を計算
+	public function monthly_payments($params = array()) {
+		$payments = $this->get_money($params);
+		$monthly = array();
+		foreach ($payments as $pay) {
+			$month = Util::date2month($pay['date']);
+			if (isset($monthly[$month]) == false) {
+				$monthly[$month] = 0;
+			}
+			$monthly[$month] += $pay['amount'];
+		}
+		return $monthly;
+	}
+
 	// カテゴリ別のランキングを生成
 	public function category_ranking() {
 		return $this->create_ranking('category_id' , $this->get_categories());
