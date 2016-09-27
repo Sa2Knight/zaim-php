@@ -13,6 +13,10 @@ if (isset($_GET['comment'])) {
 }
 $zaim = Util::get_oauth_consumer();
 $monthly = $zaim->monthly_payments($params);
+$sum = 0;
+foreach ($monthly as $pay) {
+	$sum += $pay;
+}
 ?>
 
 <html>
@@ -32,6 +36,10 @@ $monthly = $zaim->monthly_payments($params);
 				<td><?php echo $payments ?></td>
 			</tr>
 		<?php endforeach; ?>
+		<tr>
+			<td>合計</td>
+			<td><?php echo $sum ?></td>
+		</tr>
 	</table>
 </body>
 </html>
