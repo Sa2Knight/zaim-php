@@ -85,6 +85,16 @@ class Zaim {
 		return $this->cache;
 	}
 
+	// ジャンル一覧を取得
+	private function get_genres() {
+		return $this->get('home/genre')['genres'];
+	}
+
+	// カテゴリ一覧を取得
+	private function get_categories() {
+		return $this->get('home/category')['categories'];
+	}
+
 	// リクエストをGETで送信し、レスポンスのJSONを連想配列に変換して戻す
 	private function get($url , $params = array()) {
 		$response = $this->consumer->sendRequest(API_URL . $url , $params , 'GET');
