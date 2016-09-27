@@ -74,6 +74,7 @@ class Zaim {
 
 	// 月ごとの支出を計算
 	public function monthly_payments($params = array()) {
+		$params['mode'] = 'payment';
 		$payments = $this->get_money($params);
 		$monthly = array();
 		foreach ($payments as $pay) {
