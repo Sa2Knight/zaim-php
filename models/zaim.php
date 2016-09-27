@@ -29,4 +29,21 @@ function set_oauth_consumer() {
 	$_SESSION['consumer'] = $consumer;
 }
 
+// ユーザ名を取得
+function user_name($consumer) {
+	return get_verify($consumer)['name'];
+}
+
+// ユーザ情報を取得
+function get_verify($consumer) {
+	return get($consumer , 'home/user/verify')['me'];
+}
+
+// リクエストをGETで送信し、レスポンスのJSONを連想配列に変換して戻す
+function get($consumer , $url) {
+	$response = $consumer->sendRequest(API_URL . $url , array() , 'GET');
+	$json = $response->getBody();
+	return json_decode($json , true);
+}
+
 ?>
