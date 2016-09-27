@@ -33,12 +33,12 @@ foreach ($monthly as $pay) {
 		<?php foreach ($monthly as $date => $payments) : ?>
 			<tr>
 				<td><?php echo $date ?></td>
-				<td><?php echo $payments ?></td>
+				<td><?php Util::echo_money($payments) ?></td>
 			</tr>
 		<?php endforeach; ?>
 		<tr>
 			<td>合計</td>
-			<td><?php echo $sum ?></td>
+			<td><?php Util::echo_money($sum) ?></td>
 		</tr>
 	</table>
 </body>

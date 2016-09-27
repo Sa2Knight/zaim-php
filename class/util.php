@@ -48,6 +48,17 @@ class Util {
 		return $year . '-' . $month;
 	}
 
+	public static function echo_money($money) {
+		$money = intval($money);
+		if ($money >= 10000) {
+			$m = intval($money / 10000);
+			$s = $money % 10000;
+			echo $m . '万' . $s . '円';
+		} else {
+			echo $money . '円';
+		}
+	}
+
 }
 
 ?>
