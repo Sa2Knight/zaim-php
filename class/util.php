@@ -53,9 +53,9 @@ class Util {
 		if ($money >= 10000) {
 			$m = intval($money / 10000);
 			$s = $money % 10000;
-			echo $m . '万' . $s . '円';
+			echo $m . '万' . $s;
 		} else {
-			echo $money . '円';
+			echo $money;
 		}
 	}
 
