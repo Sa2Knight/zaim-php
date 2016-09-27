@@ -1,3 +1,4 @@
 <?php
-	echo "Hello,Zime";
+	require '../class/zaim.php';
+	new Zaim();
 ?>
