@@ -106,6 +106,7 @@ class Zaim {
 			$t_hash[$k]['amount'] += $pay['amount'];
 		}
 		unset($t_hash[""]); //未入力は削除
+		uasort($t_hash , function($a , $b) { return ($a['num'] <= $b['num']) ? 1 : -1; });
 		return $t_hash;
 	}
 
