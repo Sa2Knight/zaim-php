@@ -1,4 +1,4 @@
 <?php
-	require '../class/zaim.php';
-	new Zaim();
+	require '../models/zaim.php';
+	set_oauth_consumer();
 ?>
