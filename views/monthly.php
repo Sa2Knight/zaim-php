@@ -22,23 +22,24 @@ foreach ($monthly as $pay) {
 <html>
 <head>
 	<title>Zaim APIで遊んでみた</title>
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 <body>
 	<h1>月別集計 <?php echo $link; ?></h1>
 	<table border="1">
 		<tr>
-			<th>年月</th>
-			<th>出費</th>
+			<th class='center'>年月</th>
+			<th class='center'>出費</th>
 		</tr>
 		<?php foreach ($monthly as $date => $payments) : ?>
 			<tr>
-				<td><?php echo $date ?></td>
-				<td><?php Util::echo_money($payments) ?></td>
+				<td class='center'><?php echo $date ?></td>
+				<td class='right'><?php Util::echo_money($payments) ?></td>
 			</tr>
 		<?php endforeach; ?>
 		<tr>
-			<td>合計</td>
-			<td><?php Util::echo_money($sum) ?></td>
+			<td class='center'>合計</td>
+			<td class='right'><?php Util::echo_money($sum) ?></td>
 		</tr>
 	</table>
 </body>

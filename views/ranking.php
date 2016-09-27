@@ -20,22 +20,23 @@ if ($target == 'category') {
 <html>
 <head>
 	<title>Zaim APIで遊んでみた</title>
+	<link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
 <body>
 	<h1><?php echo $title ?> 別ランキング</h1>
 	<table border="1">
 		<tr>
-			<th>順位</th>
-			<th><?php echo $title ?></th>
-			<th>回数</th>
-			<th>総額</th>
+			<th class='center'>順位</th>
+			<th class='center'><?php echo $title ?></th>
+			<th class='center'>回数</th>
+			<th class='center'>総額</th>
 		</tr>
 		<?php foreach ($ranking as $k => $v) : ?>
 			<tr>
-				<td><?php echo $v['rank']; ?></td>
-				<td><?php echo $v['key']; ?></td>
-				<td><?php echo $v['num']; ?></td>
-				<td><?php echo $v['amount']; ?></td>
+				<td class='center'><?php echo $v['rank']; ?></td>
+				<td class='center'><?php echo $v['key']; ?></td>
+				<td class='center'><?php echo $v['num']; ?></td>
+				<td class='right'><?php echo $v['amount']; ?></td>
 			</tr>
 		<?php endforeach; ?>
 	</table>
