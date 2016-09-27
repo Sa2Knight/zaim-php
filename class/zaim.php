@@ -1,7 +1,7 @@
 <?php
 
 require_once('HTTP/OAuth/Consumer.php');
-require 'util.php';
+require_once 'util.php';
 
 const SITE_URL = "https://api.zaim.net";
 const API_URL = "https://api.zaim.net/v2/";

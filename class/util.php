@@ -1,8 +1,20 @@
 <?php
 
+require_once 'zaim.php';
+
 class Util {
 
 	const KEYSFILE = "../keys.json";
+
+	public static function get_oauth_consumer()
+	{
+		if (isset($_SESSION['consumer']) == false) {
+			$zaim = new Zaim();
+			$object = serialize($zaim);
+			$_SESSION['consumer'] = $object;
+		}
+		return unserialize($_SESSION['consumer']);
+	}
 
 	public static function load_keys_file()
 	{
