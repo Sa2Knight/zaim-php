@@ -33,7 +33,7 @@ if ($target == 'category') {
 		<?php foreach ($ranking as $k => $v) : ?>
 			<tr>
 				<td><?php echo $v['rank']; ?></td>
-				<td><?php echo $k; ?></td>
+				<td><?php echo $v['key']; ?></td>
 				<td><?php echo $v['num']; ?></td>
 				<td><?php echo $v['amount']; ?></td>
 			</tr>

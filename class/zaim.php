@@ -74,12 +74,12 @@ class Zaim {
 
 	// カテゴリ別のランキングを生成
 	public function category_ranking() {
-		return $this->create_ranking('category_id');
+		return $this->create_ranking('category_id' , $this->get_categories());
 	}
 
 	// ジャンル別のランキングを生成
 	public function genre_ranking() {
-		return $this->create_ranking('genre_id');
+		return $this->create_ranking('genre_id' , $this->get_genres());
 	}
 
 	// 支払先別のランキングを生成
@@ -88,13 +88,23 @@ class Zaim {
 	}
 
 	// 指定した条件でランキングを生成
-	private function create_ranking($key , $params = array()) {
+	private function create_ranking($key , $id_info = null , $params = array()) {
 		$ranking = $this->aggregate_payments($key , $params);
+		if ($id_info) {
+			$ids = array_map(function($r) { return $r['id']; } , $ranking);
+			$id2name = $this->id2names($id_info , $ids);
+		}
 		uasort($ranking , function($a , $b) { return ($a['num'] <= $b['num']) ? 1 : -1; });
+
 		$rank = 1;
 		foreach ($ranking as &$r) {
 			$r['rank'] = $rank;
 			$rank += 1;
+			if ($id_info) {
+				$r['key'] = $id2name[$r['id']];
+			} else {
+				$r['key'] = $r['id'];
+			}
 		}
 		unset($r);
 		return $ranking;
@@ -110,6 +120,7 @@ class Zaim {
 			if (isset($t_hash[$k]) == false) {
 				$t_hash[$k] = array('num' => 0 , 'amount' => 0);
 			}
+			$t_hash[$k]['id'] = $k;
 			$t_hash[$k]['num'] += 1;
 			$t_hash[$k]['amount'] += $pay['amount'];
 		}
@@ -118,9 +129,9 @@ class Zaim {
 	}
 
 	// IDのリストを、カテゴリ名 or ジャンル名に一括変換
-	private function id2names($info , $ids) {
+	private function id2names($id_info , $ids) {
 		$id2name = array();
-		foreach ($info as $i) {
+		foreach ($id_info as $i) {
 			if (array_search($i['id'] , $ids)) {
 				$id2name[$i['id']] = $i['name'];
 			}
