@@ -17,7 +17,7 @@ class Zaim {
 	public function __construct() {
 		//下準備
 		session_start();
-		$keys = load_keys_file();
+		$keys = Util::load_keys_file();
 		$this->consumer = new HTTP_OAuth_Consumer($keys["key"], $keys["secret"]);
 
 		//SSL設定
