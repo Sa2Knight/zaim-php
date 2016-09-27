@@ -12,6 +12,7 @@
 <head>
 	<title>Zaim APIで遊んでみた</title>
 	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<script src="/js/zaim.js"></script>
 </head>
 <body>
 	<h1>基本情報</h1>

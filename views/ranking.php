@@ -21,6 +21,7 @@ if ($target == 'category') {
 <head>
 	<title>Zaim APIで遊んでみた</title>
 	<link rel="stylesheet" href="/css/style.css" type="text/css">
+	<script src="/js/zaim.js"></script>
 </head>
 <body>
 	<h1><?php echo $title ?> 別ランキング</h1>
