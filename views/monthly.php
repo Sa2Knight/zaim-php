@@ -1,6 +1,7 @@
 <?php
 require_once '../class/zaim.php';
 require_once '../class/util.php';
+$link = $_GET['link'];
 $zaim = Util::get_oauth_consumer();
 ?>
 
@@ -9,7 +10,7 @@ $zaim = Util::get_oauth_consumer();
 	<title>Zaim APIで遊んでみた</title>
 </head>
 <body>
-	<h1>月別集計</h1>
+	<h1>月別集計 <?php echo $link; ?></h1>
 	<table border="1">
 		<tr>
 			<th>年月</th>
