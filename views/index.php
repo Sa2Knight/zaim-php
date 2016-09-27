@@ -36,9 +36,9 @@
 	<h1>集計情報</h1>
 	<p>ランキング</p>
 	<ul>
-		<li><a href="/ranking?target=category">カテゴリ</a></li>
-		<li><a href="/ranking?target=genre">ジャンル</a></li>
-		<li><a href="/ranking?target=place">支払先</a></li>
+		<li><a href="/ranking.php?target=category">カテゴリ</a></li>
+		<li><a href="/ranking.php?target=genre">ジャンル</a></li>
+		<li><a href="/ranking.php?target=place">支払先</a></li>
 	</ul>
 
 </body>

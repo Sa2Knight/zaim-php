@@ -72,6 +72,18 @@ class Zaim {
 		return count($this->get_money());
 	}
 
+	// 支払先別のランキングを生成
+	public function place_ranking() {
+		$ranking = $this->create_ranking('place');
+		$rank = 1;
+		foreach ($ranking as &$r) {
+			$r['rank'] = $rank;
+			$rank += 1;
+		}
+		unset($r);
+		return $ranking;
+	}
+
 	// カテゴリIDをカテゴリ名に一括変換
 	private function categories2id($categories_id) {
 	}
@@ -80,15 +92,32 @@ class Zaim {
 	private function genres2id($genres_id) {
 	}
 
+	// 指定した条件でランキングを生成
+	private function create_ranking($key , $params = array()) {
+		$params = array('mode' => 'payment');
+		$payments = $this->get_money($params);
+		$t_hash = array();
+		foreach ($payments as $pay) {
+			$k = $pay[$key];
+			if (isset($t_hash[$k]) == false) {
+				$t_hash[$k] = array('num' => 0 , 'amount' => 0);
+			}
+			$t_hash[$k]['num'] += 1;
+			$t_hash[$k]['amount'] += $pay['amount'];
+		}
+		unset($t_hash[""]); //未入力は削除
+		return $t_hash;
+	}
+
 	// ユーザ情報を取得
 	private function get_verify() {
 		return $this->get('home/user/verify')['me'];
 	}
 
 	// 全入力情報を取得し、キャッシュする
-	private function get_money() {
+	private function get_money($params = array()) {
 		if (isset($this->cache) == false) {
-			$this->cache = $this->get('home/money')['money'];
+			$this->cache = $this->get('home/money' , $params)['money'];
 		}
 		return $this->cache;
 	}
