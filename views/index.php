@@ -36,13 +36,13 @@
 	<h1>集計情報</h1>
 	<p>月別集計</p>
 	<ul>
-		<li><a href="/monthly?link=累計">累計</a></li>
-		<li><a href="/monthly?category_id=101&link=食費">食費</a></li>
-		<li><a href="/monthly?genre_id=10502&link=電気代">電気代</a></li>
-		<li><a href="/monthly?genre_id=10503&link=ガス代">ガス代</a></li>
-		<li><a href="/monthly?genre_id=10501&link=水道代">水道代</a></li>
-		<li><a href="/monthly?genre_id=9047786&comment=ポケモンGO&link=ポケモンGO">ポケモンGO</a></li>
-		<li><a href="/monthly?genre_id=10203&link=デグー関連">デグー関連</a></li>
+		<li><a href="/monthly.php?link=累計">累計</a></li>
+		<li><a href="/monthly.php?category_id=101&link=食費">食費</a></li>
+		<li><a href="/monthly.php?genre_id=10502&link=電気代">電気代</a></li>
+		<li><a href="/monthly.php?genre_id=10503&link=ガス代">ガス代</a></li>
+		<li><a href="/monthly.php?genre_id=10501&link=水道代">水道代</a></li>
+		<li><a href="/monthly.php?genre_id=9047786&comment=ポケモンGO&link=ポケモンGO">ポケモンGO</a></li>
+		<li><a href="/monthly.php?genre_id=10203&link=デグー関連">デグー関連</a></li>
 	</ul>
 	<p>ランキング</p>
 	<ul>
