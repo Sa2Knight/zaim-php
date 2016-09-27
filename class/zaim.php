@@ -12,6 +12,7 @@ const ACCESS_TOKEN_PATH = "https://api.zaim.net";
 class Zaim {
 
 	private $consumer;
+	private $cache;
 
 	// インスタンス生成時に、OAuth認証を行う
 	public function __construct() {
@@ -32,6 +33,11 @@ class Zaim {
 		$this->consumer->setTokenSecret($keys['access_token_secret']);
 	}
 
+	// キャッシュをクリア
+	public function clear_cache() {
+		unset($cache);
+	}
+
 	// ユーザ名を取得
 	public function user_name() {
 		return $this->get_verify()['name'];
@@ -39,27 +45,31 @@ class Zaim {
 
 	// 総支出額を取得
 	public function total_payments() {
-		$all_payments = $this->get_payments();
+		$all_money = $this->get_money();
 		$total = 0;
-		foreach($all_payments as $pay) {
-			$total += $pay['amount'];
+		foreach($all_money as $money) {
+			if ($money['mode'] == 'payment') {
+				$total += $money['amount'];
+			}
 		}
 		return $total;
 	}
 
 	// 総収入を取得
 	public function total_incomes() {
-		$all_incomes = $this->get_incomes();
+		$all_money = $this->get_money();
 		$total = 0;
-		foreach($all_incomes as $income) {
-			$total += $income['amount'];
+		foreach($all_money as $money) {
+			if ($money['mode'] == 'income') {
+				$total += $money['amount'];
+			}
 		}
 		return $total;
 	}
 
 	// 総入力回数を取得
 	public function total_input_count() {
-		return count($this->get_payments()) + count($this->get_incomes());
+		return count($this->get_money());
 	}
 
 	// ユーザ情報を取得
@@ -67,16 +77,12 @@ class Zaim {
 		return $this->get('home/user/verify')['me'];
 	}
 
-	// 支払情報を取得
-	private function get_payments($params = array()) {
-		$params['mode'] = 'payment';
-		return $this->get('home/money' , $params)['money'];
-	}
-
-	// 収入情報を取得
-	private function get_incomes($params = array()) {
-		$params['mode'] = 'income';
-		return $this->get('home/money' , $params)['money'];
+	// 全入力情報を取得し、キャッシュする
+	private function get_money() {
+		if (isset($this->cache) == false) {
+			$this->cache = $this->get('home/money')['money'];
+		}
+		return $this->cache;
 	}
 
 	// リクエストをGETで送信し、レスポンスのJSONを連想配列に変換して戻す

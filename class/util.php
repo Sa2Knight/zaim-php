@@ -9,11 +9,12 @@ class Util {
 	public static function get_oauth_consumer()
 	{
 		if (isset($_SESSION['consumer']) == false) {
-			$zaim = new Zaim();
-			$object = serialize($zaim);
+			$object = serialize(new Zaim());
 			$_SESSION['consumer'] = $object;
 		}
-		return unserialize($_SESSION['consumer']);
+		$zaim = unserialize($_SESSION['consumer']);
+		$zaim->clear_cache();
+		return $zaim;
 	}
 
 	public static function load_keys_file()
