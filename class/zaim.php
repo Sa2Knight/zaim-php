@@ -72,6 +72,14 @@ class Zaim {
 		return count($this->get_money());
 	}
 
+	// カテゴリIDをカテゴリ名に一括変換
+	private function categories2id($categories_id) {
+	}
+
+	// ジャンルIDをジャンル名に一括変換
+	private function genres2id($genres_id) {
+	}
+
 	// ユーザ情報を取得
 	private function get_verify() {
 		return $this->get('home/user/verify')['me'];
