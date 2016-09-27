@@ -25,6 +25,29 @@ class Util {
 		return $keys;
 	}
 
+	public static function date2month($date , $cutoff = 25) {
+		$pattern = '/^(\d{4})-(\d{1,2})-(\d{1,2})$/';
+		preg_match($pattern , $date , $m);
+		$year = intval($m[1]);
+		$month = intval($m[2]);
+		$day = intval($m[3]);
+
+		$datetime = date_create($date);
+		$week_day = (int)$datetime->format('w');
+		if ($week_day == 0) $cutoff -= 2;
+		if ($week_day == 6) $cutoff -= 1;
+
+		if ($cutoff <= $day) {
+			$month += 1;
+			if ($month == 13) {
+				$month = 1;
+				$year += 1;
+			}
+		}
+
+		return $year . '-' . $month;
+	}
+
 }
 
 ?>
