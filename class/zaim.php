@@ -87,14 +87,6 @@ class Zaim {
 		return $this->create_ranking('place');
 	}
 
-	// カテゴリIDをカテゴリ名に一括変換
-	private function categories2id($categories_id) {
-	}
-
-	// ジャンルIDをジャンル名に一括変換
-	private function genres2id($genres_id) {
-	}
-
 	// 指定した条件でランキングを生成
 	private function create_ranking($key , $params = array()) {
 		$ranking = $this->aggregate_payments($key , $params);
@@ -123,6 +115,17 @@ class Zaim {
 		}
 		unset($t_hash[""]); //未入力は削除
 		return $t_hash;
+	}
+
+	// IDのリストを、カテゴリ名 or ジャンル名に一括変換
+	private function id2names($info , $ids) {
+		$id2name = array();
+		foreach ($info as $i) {
+			if (array_search($i['id'] , $ids)) {
+				$id2name[$i['id']] = $i['name'];
+			}
+		}
+		return $id2name;
 	}
 
 	// ユーザ情報を取得
