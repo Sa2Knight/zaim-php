@@ -35,7 +35,9 @@ if ($target == 'category') {
 		<?php foreach ($ranking as $k => $v) : ?>
 			<tr>
 				<td class='center'><?php echo $v['rank']; ?></td>
-				<td class='center'><?php echo $v['key']; ?></td>
+				<td class='center'>
+					<p class='link' onclick='moveAllDayPaymentsURL("<?php echo $title ?>" , "<?php echo $v['id'] ?>")'><?php echo $v['key']; ?></p>
+				</td>
 				<td class='center'><?php echo $v['num']; ?></td>
 				<td class='right'><?php Util::echo_money($v['amount']); ?></td>
 			</tr>
