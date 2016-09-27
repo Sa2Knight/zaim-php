@@ -84,6 +84,18 @@ class Zaim {
 		return $ranking;
 	}
 
+	// ジャンル別のランキングを生成
+	public function genre_ranking() {
+		$ranking = $this->create_ranking('genre_id');
+		$rank = 1;
+		foreach ($ranking as &$r) {
+			$r['rank'] = $rank;
+			$rank += 1;
+		}
+		unset($r);
+		return $ranking;
+	}
+
 	// 支払先別のランキングを生成
 	public function place_ranking() {
 		$ranking = $this->create_ranking('place');
