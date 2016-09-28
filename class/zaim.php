@@ -72,13 +72,17 @@ class Zaim {
 		return count($this->get_money());
 	}
 
-	// 日ごとの支出を計算
-	public function daily_payments($params = array()) {
+	// 日ごと(月ごと)の支出を計算
+	public function daily_payments($params = array() , $monthly_mode = false) {
 		$params['mode'] = 'payment';
 		$payments = $this->get_money($params);
 		$daily = array();
 		foreach ($payments as $pay) {
-			$date = $pay['date'];
+			if ($monthly_mode) {
+				$date = Util::date2month($pay['date']);
+			} else {
+				$date = $pay['date'];
+			}
 			if (isset($daily[$date]) == false) {
 				$daily[$date] = 0;
 			}
@@ -89,17 +93,7 @@ class Zaim {
 
 	// 月ごとの支出を計算
 	public function monthly_payments($params = array()) {
-		$params['mode'] = 'payment';
-		$payments = $this->get_money($params);
-		$monthly = array();
-		foreach ($payments as $pay) {
-			$month = Util::date2month($pay['date']);
-			if (isset($monthly[$month]) == false) {
-				$monthly[$month] = 0;
-			}
-			$monthly[$month] += $pay['amount'];
-		}
-		return $monthly;
+		return $this->daily_payments($params , true);
 	}
 
 	// カテゴリ別のランキングを生成
