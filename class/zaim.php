@@ -72,6 +72,21 @@ class Zaim {
 		return count($this->get_money());
 	}
 
+	// 日ごとの支出を計算
+	public function daily_payments($params = array()) {
+		$params['mode'] = 'payment';
+		$payments = $this->get_money($params);
+		$daily = array();
+		foreach ($payments as $pay) {
+			$date = $pay['date'];
+			if (isset($daily[$date]) == false) {
+				$daily[$date] = 0;
+			}
+			$daily[$date] += $pay['amount'];
+		}
+		return $daily;
+	}
+
 	// 月ごとの支出を計算
 	public function monthly_payments($params = array()) {
 		$params['mode'] = 'payment';
