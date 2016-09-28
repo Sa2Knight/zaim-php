@@ -16,14 +16,7 @@ if ($target == 'category') {
 }
 
 ?>
-
-<html>
-<head>
-	<title>Zaim APIで遊んでみた</title>
-	<link rel="stylesheet" href="/css/style.css" type="text/css">
-	<script src="/js/zaim.js"></script>
-</head>
-<body>
+<?php require_once("header.html"); ?>
 	<h1><?php echo $title ?> 別ランキング</h1>
 	<table border="1">
 		<tr>
@@ -43,5 +36,4 @@ if ($target == 'category') {
 			</tr>
 		<?php endforeach; ?>
 	</table>
-</body>
-</html>
+<?php require_once("footer.html"); ?>

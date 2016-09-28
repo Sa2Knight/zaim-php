@@ -8,14 +8,8 @@
 	$total_input_count = $zaim->total_input_count();
 ?>
 
-<html>
-<head>
-	<title>Zaim APIで遊んでみた</title>
-	<link rel="stylesheet" href="/css/style.css" type="text/css">
-	<script src="/js/zaim.js"></script>
-</head>
-<body>
-	<h1>基本情報</h1>
+<?php require_once("header.html"); ?>
+<h1>基本情報</h1>
 	<table border="1">
 		<tr>
 			<td>入力回数</td>
@@ -52,6 +46,4 @@
 		<li><a href="/ranking.php?target=genre">ジャンル</a></li>
 		<li><a href="/ranking.php?target=place">支払先</a></li>
 	</ul>
-
-</body>
-</html>
+<?php require_once("footer.html"); ?>

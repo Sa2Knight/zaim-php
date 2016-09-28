@@ -18,14 +18,7 @@ foreach ($monthly as $pay) {
 	$sum += $pay;
 }
 ?>
-
-<html>
-<head>
-	<title>Zaim APIで遊んでみた</title>
-	<link rel="stylesheet" href="/css/style.css" type="text/css">
-	<script src="/js/zaim.js"></script>
-</head>
-<body>
+<?php require_once("header.html"); ?>
 	<h1>月別集計 <?php echo $link; ?></h1>
 	<table border="1">
 		<tr>
@@ -43,5 +36,4 @@ foreach ($monthly as $pay) {
 			<td class='right'><?php Util::echo_money($sum) ?></td>
 		</tr>
 	</table>
-</body>
-</html>
+<?php require_once("footer.html"); ?>
