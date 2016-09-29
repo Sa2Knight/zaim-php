@@ -17,6 +17,15 @@ $sum = 0;
 foreach ($monthly as $pay) {
 	$sum += $pay;
 }
+
+function getZaimURL($month) {
+	$base = "https://zaim.net/money/month?month=";
+	$exploded = explode("-" , $month);
+	$y = intval($exploded[0]);
+	$m = intval($exploded[1]);
+	$url = sprintf("%s%d%02d" , $base , $y , $m);
+	echo $url;
+}
 ?>
 <?php require_once("header.html"); ?>
 	<h1>月別集計 <?php echo $link; ?></h1>
@@ -27,7 +36,7 @@ foreach ($monthly as $pay) {
 		</tr>
 		<?php foreach ($monthly as $date => $payments) : ?>
 			<tr>
-				<td class='center'><?php echo $date ?></td>
+				<td class='center'><a class="link" href="<?php getZaimURL($date) ?>"><?php echo $date ?></a></td>
 				<td class='right'><?php Util::echo_money($payments) ?></td>
 			</tr>
 		<?php endforeach; ?>
