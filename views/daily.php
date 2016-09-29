@@ -10,7 +10,11 @@ function getColor($pay) {
 	if ($pay < 5000) return '#FF4500';
 	return '#FF0000';
 }
-
+function getZaimURL($date) {
+	$base = "https://zaim.net/money?";
+	$url  = $base . "start_date=" . $date . "&end_date=" . $date;
+	echo $url;
+}
 ?>
 <?php require_once("header.html"); ?>
 	<h1>日別集計</h1>
@@ -21,7 +25,7 @@ function getColor($pay) {
 		</tr>
 		<?php foreach ($daily as $date => $payments) : ?>
 			<tr>
-				<td class='center'><?php echo $date ?></td>
+				<td class='center'><a class="link" href="<?php getZaimURL($date); ?>"><?php echo $date ?></a></td>
 				<td class='right' style="background-color: <?php echo getColor($payments); ?>"><?php Util::echo_money($payments) ?></td>
 			</tr>
 		<?php endforeach; ?>
